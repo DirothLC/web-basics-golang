@@ -1,15 +1,22 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+	"GinIntroduction/internal/config"
+	"GinIntroduction/internal/entity"
+	"GinIntroduction/internal/server"
+	"log"
 )
 
-func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+func init() {
+	config.InitEnv()
+	config.Connection()
 
-		c.JSON(http.StatusOK, gin.H{"message": "pong"})
-	})
-	r.Run()
+	config.DB.AutoMigrate(&entity.Product{})
+}
+
+func main() {
+	r := server.NewRouter()
+	if err := r.Run(":8080"); err != nil {
+		log.Fatal(err)
+	}
 }
