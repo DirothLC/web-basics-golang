@@ -13,11 +13,11 @@ func NewRouter() *gin.Engine {
 
 	pingHandler := handler.NewPingHandler()
 	router.GET("/ping", pingHandler.Ping)
-	router.GET("/products", controller.ProductIndex)
+	router.GET("/product", controller.ProductIndex)
 	router.POST("/product", controller.ProductPost)
-	router.PUT("/product", controller.ProductPut)
-	router.DELETE("/product", controller.ProductDelete)
-	router.GET("/product", controller.ProductGetByID)
+	router.PUT("/product/:id", controller.ProductPut)
+	router.DELETE("/product/:id", controller.ProductDelete)
+	router.GET("/product/:id", controller.ProductGetByID)
 
 	return router
 }
