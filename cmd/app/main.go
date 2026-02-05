@@ -4,6 +4,7 @@ import (
 	"GinIntroduction/internal/config"
 	"GinIntroduction/internal/entity"
 	"GinIntroduction/internal/server"
+	"github.com/spf13/viper"
 	"log"
 )
 
@@ -16,7 +17,7 @@ func init() {
 
 func main() {
 	r := server.NewRouter()
-	if err := r.Run(":8080"); err != nil {
+	if err := r.Run(viper.GetString("PORT")); err != nil {
 		log.Fatal(err)
 	}
 }

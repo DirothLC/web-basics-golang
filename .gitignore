@@ -1,2 +1,2 @@
-/.env
+/internal/config/viper.env
 /.idea
